@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: This template creates  public & private instances
+
+Parameters:
+  VpcCIDR:
+    Default: 10.0.0.0/16
+    Description: Please enter the IP range for this vpc
+    Type: String
+
+  PublicSubnetCIDR:
+    Default: 10.0.0.0/24
+    Description: Please enter the IP range for the Public Subnet
+    Type: String
+
+  KeyName:
+    Description: Name of EC2 Keypair to enable ssh access to the instance
+    Type: AWS::EC2::KeyPair::KeyName
+
+  InstanceType:
+    Description: Webserver EC2 instance Type
+    Type: String
+    Default: t2.micro
+
+
+
+  LatestAmiId
+    Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
+    Default: "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
+
+  SecurityGroup:
+    Description: Webserver EC2 instance Type
+    Type: String
+    Default: sg-00680c710ed0c5f06
+
+
+
+Resources:
+
+
+  PublicInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref LatestAmiId
+      KeyName: !Ref KeyName
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet: [!Ref "SecurityGroup"]
+          SubnetId: subnet-01d6e7e0b18908444
+
+
+
