@@ -7,8 +7,4 @@ else:
     print("true")
 
 
-else:
-    print("Bye!")
 
-print("End")
->>>>>>> ts.1
