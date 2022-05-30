@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: This template creates vpc with public & private subnets
+
+#Metadata:
+
+Parameters:
+  VpcCIDR:
+    Default: 10.0.0.0/16
+    Description: Please enter the IP range for this vpc
+    Type: String
+
+
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCIDR
+      EnableDnsHostnames: True
+      EnableDnsSupport: True
+      Tags:
+        - Key: Name
+          Value: Test VPC
+
+
+
