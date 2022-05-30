@@ -4,7 +4,7 @@ if x > 9:
 
     print("false")
 else:
-    print("true")
+    print("please insert correct value")
 
 
 
